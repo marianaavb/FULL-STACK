@@ -1,0 +1,42 @@
+div div{
+    background-color: dodgerblue;
+    padding: 10px;
+    margin: 10px;
+    color: linen;
+    text-align: center;
+}
+
+.topo {
+    background-color: bisque;
+    height: 170px;
+    display: grid;
+    grid-template-columns: 200px 400px 200px; /*a quantidade de "auto" será a quantidade de colunas, ao invés de auto, também da ppara colocar a quantidade de px, como: "200px 400px"*/
+    gap: 10px 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu {
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: center;
+    column-gap: 20px;
+}
+
+.sessao{
+    background-color: bisque;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 20px 20px;
+}
+
+#d1{
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+#d2{
+    grid-row-start: 7;
+    grid-row-end: 3;
+}
