@@ -1,0 +1,49 @@
+p{
+    font-size: 25pt;
+}
+
+* {
+    background-color:wheat;
+}
+
+.menu{
+    background-color: black;
+    color: white;
+}
+
+.menu:hover{
+    background-color: white;
+    color: black;
+}
+
+/*Alteração de cores do texto- classes começam com ponto*/
+.azul{color:blue}
+.vermelho{color: red;}
+.amarelo {color: yellow;}
+.verde {color: green;}
+.laranja{color: orange;}
+
+.tam10 {font-size: 10pt;}
+.tam16 {font-size: 16pt;}
+.tam26 {font-size: 26pt;}
+.tam36 {font-size: 36pt;}
+.tam46 {font-size: 46pt;}
+
+/*ids começam com hashtag*/
+
+#p_amarelo{
+    background-color: black;
+}
+
+ div a{
+    text-decoration: none;
+}
+
+div a:visited {
+    color: aqua;
+}
+
+#p_amarelo:hover {
+    background-color: blueviolet
+    color: white;
+}
