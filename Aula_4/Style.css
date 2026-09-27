@@ -30,13 +30,3 @@ div div{
     grid-template-columns: auto auto auto;
     gap: 20px 20px;
 }
-
-#d1{
-    grid-column-start: 1;
-    grid-column-end: 4;
-}
-
-#d2{
-    grid-row-start: 7;
-    grid-row-end: 3;
-}

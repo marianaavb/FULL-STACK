@@ -1,0 +1,111 @@
+
+.Cabecalho {
+    background-color: #FAF7F2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    
+}
+
+.segunda {
+    align-items: center;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    gap: 90px;
+}
+
+.bags{
+    display: flex;
+    flex-wrap:nowrap;
+    gap: 10px;
+}
+
+.bags div {
+    background-color: #EFE7DB;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #2f4a3c;
+}
+
+.subtitulo {
+    color: #D97757;
+}
+
+section{
+    text-align: center;
+    background-color: #FAF7F2;
+}
+
+.botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.a {
+    background-color:#3F6C51;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.b {
+    background-color: #FAF7F2;
+    border: 2px solid #3F6C51;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #3F6C51;
+}
+
+.projetos {
+   
+    background-color: #FAF7F2;
+    text-align: center;
+}
+
+.blocos {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    background-color: #FAF7F2;
+    text-align: center;
+}
+
+.financeiro {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 350px;
+    text-align: left;
+}
+
+.clima {
+    
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 350px;
+    text-align: left;
+}
+
+.ultimo {
+    background-color: #2B2A28;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
