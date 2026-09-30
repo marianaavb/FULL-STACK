@@ -1,0 +1,55 @@
+.cabecalho {
+    background-color: #3b82f6;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.bloco1 {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.bloco1 h1{
+    color: #374151;
+}
+
+.bloco1 .botao {
+    color: #ffffff;
+    background-color: #3b82f6;
+    border-radius: 4px;
+    height: 30px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bloco2 {
+    background-color: #f3f4f6;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bloco2 .email {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rodape {
+    background-color: #1f2937;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    color: #ffffff;
+}
