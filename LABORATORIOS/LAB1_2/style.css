@@ -1,10 +1,25 @@
 
-
-h1 {
+.Cabecalho {
+    background-color: white;
+    display: flex;
+    align-items: center;
     text-align: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+    
+}
+
+.textoCabecalho {
+    text-align:justify;
+}
+
+
+h2 {
     color: purple;
 }
 
-h2 {
+h1 {
+    text-align: center;
     color: purple;
 }
