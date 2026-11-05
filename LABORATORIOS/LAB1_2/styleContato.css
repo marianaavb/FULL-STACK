@@ -1,0 +1,26 @@
+a:hover {
+    color: red;
+}
+
+.voltar {
+    display: flex;
+    border: 20px;
+    border-radius: 6px;
+    color: white;
+}
+
+a {
+    color: blueviolet;
+    text-decoration: none;
+    border: 5px;
+    border-radius: 6px;
+    background-color: blueviolet;
+    color: white;
+    padding: 10px;
+}
+
+body {
+    background-color: rgb(216, 183, 246);
+    text-align: center;
+}
+

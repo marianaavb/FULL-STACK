@@ -3,8 +3,14 @@ a:hover {
     text-decoration: underline;
 }
 
-.table {
-    display: flex;
+table {
+    margin: auto;
+    color: blueviolet;       
+    justify-content: center;
     align-items: center;
-    text-align: center;
+
+}
+
+body {
+    background-color: rgb(230, 205, 253);
 }
