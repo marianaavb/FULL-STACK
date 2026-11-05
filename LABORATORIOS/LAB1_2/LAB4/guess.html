@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Adivinhação</title>
+    <link rel="stylesheet" href="Style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="game">
+        <h1>Jogo de adivinhação</h1>
+        <p>Olá! Tente adivinhar o número secreto entre 0 e 99.</p>
+        <form id="guess-form">
+            <label for="c1">Seu palpite:</label>
+            <input id="c1" type="number" min="0" max="99" step="1" required autofocus>
+            <button type="submit">Adivinhar</button>
+        </form>
+        <p id="resposta" class="feedback" aria-live="polite">Digite um número para começar.</p>
+    </main>
+</body>
+</html>
