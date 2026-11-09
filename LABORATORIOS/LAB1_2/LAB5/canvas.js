@@ -57,7 +57,6 @@ function desenhar_figura() {
   desenhar_linha(250, 50, 150, 150, "#ff3b3b", 1.5);
   desenhar_linha(0, 150, 300, 150, verde, 1.5);
   desenhar_arco(150, 150, 60, Math.PI, Math.PI * 2, verde);
-  desenhar_arco(150, 150, 75, Math.PI, Math.PI * 2, verde);
   desenhar_arco(150, 150, 90, Math.PI, Math.PI * 2, verde);
 
   escrever("Canvas", 150, 44, "#333", "20px Arial");

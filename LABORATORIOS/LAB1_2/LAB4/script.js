@@ -3,7 +3,7 @@ const numeroSecreto = Math.floor(Math.random() * 100);
 document.getElementById("guess-form").addEventListener("submit", function (evento) {
     evento.preventDefault();
 
-    const entrada = document.getElementById("c1");
+    const entrada = document.getElementById("chute");
     const palpite = Number(entrada.value);
     const resposta = document.getElementById("resposta");
 
