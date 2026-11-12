@@ -1,40 +1,42 @@
-const canvas = document.querySelector("#canvas");
-const context = canvas.getContext("2d");
-const radius = 22;
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
-let x = canvas.width / 2;
-let y = canvas.height / 2;
-let targetX = x;
-let targetY = y;
+// Tamanho do quadrado
+let tamanho = 40;
 
-function moveCircle(event) {
-  const bounds = canvas.getBoundingClientRect();
-  const scaleX = canvas.width / bounds.width;
-  const scaleY = canvas.height / bounds.height;
+// Posição inicial
+let x = 130;
+let y = 130;
 
-  targetX = Math.max(
-    radius,
-    Math.min(canvas.width - radius, (event.clientX - bounds.left) * scaleX)
-  );
-  targetY = Math.max(
-    radius,
-    Math.min(canvas.height - radius, (event.clientY - bounds.top) * scaleY)
-  );
+// Função responsável por desenhar
+function desenhar() {
+    ctx.clearRect(0, 0, 300, 300);
+
+    ctx.fillStyle = "LimeGreen";
+    ctx.fillRect(x, y, tamanho, tamanho);
 }
 
-window.addEventListener("pointermove", moveCircle);
+// Função responsável pelo movimento
+canvas.addEventListener("mousemove", function(evento) {
 
-function animate() {
-  x += (targetX - x) * 0.25;
-  y += (targetY - y) * 0.25;
+    // Posição do mouse em relação ao canvas
+    let posicao = canvas.getBoundingClientRect();
 
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.beginPath();
-  context.arc(x, y, radius, 0, Math.PI * 2);
-  context.fillStyle = "#e8f7ef";
-  context.fill();
+    let mouseX = evento.clientX - posicao.left;
+    let mouseY = evento.clientY - posicao.top;
 
-  requestAnimationFrame(animate);
-}
+    // Centralizar o mouse no quadrado
+    x = mouseX - tamanho / 2;
+    y = mouseY - tamanho / 2;
 
-animate();
+    // Impedir que o quadrado saia do canvas
+    if (x < 0) {x = 0;}
+    if (y < 0) {y = 0;}
+    if (x > canvas.width - tamanho) {x = canvas.width - tamanho;}
+    if (y > canvas.height - tamanho) {y = canvas.height - tamanho;}
+
+    desenhar();
+});
+
+desenhar();
+

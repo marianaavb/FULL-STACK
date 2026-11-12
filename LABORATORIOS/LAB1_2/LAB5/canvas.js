@@ -1,138 +1,174 @@
-"use strict";
 
-const canvas = document.getElementById("desenho");
-let ctx = canvas.getContext("2d");
+const canvas1 = document.getElementById("canvas1");
+const canvas2 = document.getElementById("canvas2");
 
-function desenhar_quadrado(x, y, largura, altura, cor) {
-  ctx.fillStyle = cor;
-  ctx.fillRect(x, y, largura, altura);
+const ctx1 = canvas1.getContext("2d");
+const ctx2 = canvas2.getContext("2d");
+
+// FUNÇÕES PARA DESENHAR
+
+// Desenha quadrados ou retângulos
+function desenhar_quadrado(ctx, x, y, largura, altura, cor) {
+    ctx.fillStyle = cor;
+    ctx.fillRect(x, y, largura, altura);
 }
 
-function desenhar_linha(x1, y1, x2, y2, cor, espessura = 1) {
-  ctx.beginPath();
-  ctx.moveTo(x1, y1);
-  ctx.lineTo(x2, y2);
-  ctx.strokeStyle = cor;
-  ctx.lineWidth = espessura;
-  ctx.stroke();
+// Desenha linhas entre dois pontos
+function desenhar_linha(ctx, x1, y1, x2, y2, cor, espessura) {
+    ctx.beginPath();
+    ctx.strokeStyle = cor;
+    ctx.lineWidth = espessura;
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.closePath();
 }
 
-function desenhar_arco(x, y, raio, inicio, fim, cor, espessura = 1.5, sentidoAntiHorario = false) {
-  ctx.beginPath();
-  ctx.arc(x, y, raio, inicio, fim, sentidoAntiHorario);
-  ctx.strokeStyle = cor;
-  ctx.lineWidth = espessura;
-  ctx.stroke();
+// Desenha arcos ou círculos
+function desenhar_arco(ctx, x, y, raio, inicio, fim, cor, preencher) {
+    ctx.beginPath();
+    ctx.arc(x, y, raio, inicio, fim);
+
+    if (preencher) {
+        ctx.fillStyle = cor;
+        ctx.fill();
+    } else {
+        ctx.strokeStyle = cor;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+    }
+
+    ctx.closePath();
 }
 
-function escrever(texto, x, y, cor = "#333", fonte = "20px Arial", alinhamento = "center") {
-  ctx.fillStyle = cor;
-  ctx.font = fonte;
-  ctx.textAlign = alinhamento;
-  ctx.textBaseline = "middle";
-  ctx.fillText(texto, x, y);
+// Escreve textos na área de desenho
+function escrever(ctx, texto, x, y, cor, tamanho) {
+    ctx.fillStyle = cor;
+    ctx.font = tamanho + "px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText(texto, x, y);
 }
 
-function desenhar_circulo(x, y, raio, cor) {
-  ctx.beginPath();
-  ctx.arc(x, y, raio, 0, Math.PI * 2);
-  ctx.fillStyle = cor;
-  ctx.fill();
+// Desenha triângulos, utilizada para o telhado
+function desenhar_triangulo(ctx, x1, y1, x2, y2, x3, y3, cor) {
+    ctx.beginPath();
+    ctx.fillStyle = cor;
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.lineTo(x3, y3);
+    ctx.closePath();
+    ctx.fill();
 }
 
-function desenhar_figura() {
-  const verde = "#52ad62";
-  const azul = "#0000ff";
-  const ciano = "#00e5e5";
-  const vermelho = "#ff0000";
 
-  // Blocos dos cantos e os quadrados ciano das laterais.
-  desenhar_quadrado(0, 0, 50, 50, azul);
-  desenhar_quadrado(250, 0, 50, 50, vermelho);
-  desenhar_quadrado(0, 120, 30, 60, ciano);
-  desenhar_quadrado(270, 135, 30, 30, ciano);
+// PRIMEIRO DESENHO - FORMAS GEOMÉTRICAS
 
-  // Diagonais, linha central e arcos da metade superior.
-  desenhar_linha(50, 50, 150, 150, "#4545ff", 1.5);
-  desenhar_linha(250, 50, 150, 150, "#ff3b3b", 1.5);
-  desenhar_linha(0, 150, 300, 150, verde, 1.5);
-  desenhar_arco(150, 150, 60, Math.PI, Math.PI * 2, verde);
-  desenhar_arco(150, 150, 90, Math.PI, Math.PI * 2, verde);
+// Texto
+escrever(ctx1, "Canvas", 150, 50, "black", 20);
 
-  escrever("Canvas", 150, 44, "#333", "20px Arial");
-  desenhar_circulo(150, 115, 15, ciano);
-  ctx.beginPath();
-  ctx.arc(150, 115, 15, 0, Math.PI * 2);
-  ctx.strokeStyle = azul;
-  ctx.lineWidth = 1.5;
-  ctx.stroke();
+// Quadrados superiores
+desenhar_quadrado(ctx1, 0, 0, 50, 50, "blue");
+desenhar_quadrado(ctx1, 250, 0, 50, 50, "red");
 
-  // Quadrado vermelho, eixo vertical, círculos e arcos inferiores.
-  desenhar_quadrado(110, 150, 40, 40, vermelho);
-  desenhar_linha(150, 190, 150, 300, "#777", 1.5);
-  desenhar_circulo(70, 220, 15, "#ffff00");
-  desenhar_circulo(220, 220, 15, "#ffff00");
-  desenhar_arco(150, 300, 60, Math.PI, Math.PI * 2, verde);
-  desenhar_arco(150, 300, 80, Math.PI, Math.PI * 2, verde);
-  desenhar_circulo(150, 300, 40, ciano);
-  ctx.beginPath();
-  ctx.arc(150, 300, 40, Math.PI, Math.PI * 2);
-  ctx.strokeStyle = verde;
-  ctx.lineWidth = 1.5;
-  ctx.stroke();
+// Retângulos laterais
+desenhar_quadrado(ctx1, 0, 120, 30, 60, "cyan");
+desenhar_quadrado(ctx1, 270, 135, 30, 30, "cyan");
 
-  // Cantos inferiores em formato de "L".
-  desenhar_quadrado(0, 240, 30, 60, "#ffff00");
-  desenhar_quadrado(0, 270, 60, 30, "#ffff00");
-  desenhar_quadrado(270, 240, 30, 60, "#000");
-  desenhar_quadrado(240, 270, 60, 30, "#000");
-}
+// Quadrado vermelho central
+desenhar_quadrado(ctx1, 110, 150, 40, 40, "red");
 
-desenhar_figura();
+// Formas amarelas inferiores
+desenhar_quadrado(ctx1, 0, 240, 30, 60, "yellow");
+desenhar_quadrado(ctx1, 30, 270, 30, 30, "yellow");
 
-// Segunda referência: paisagem com casa, árvores, sol, estrada e rio.
-const paisagem = document.getElementById("paisagem");
-ctx = paisagem.getContext("2d");
+// Formas pretas inferiores
+desenhar_quadrado(ctx1, 270, 240, 30, 60, "black");
+desenhar_quadrado(ctx1, 240, 270, 30, 30, "black");
 
-function desenhar_paisagem() {
-  const ceu = "#7ff2ce";
-  const marrom = "#87451f";
-  const verde = "#278c2d";
+// Arco superior esquerdo externo
+desenhar_arco(ctx1, 150, 150, 80, Math.PI, 1.25 * Math.PI, "green", false);
 
-  desenhar_quadrado(0, 0, 500, 500, ceu);
-  desenhar_circulo(375, 125, 62, "#fff923");
+// Arco superior interno completo
+desenhar_arco(ctx1, 150, 150, 60, Math.PI, 2 * Math.PI, "green", false);
 
-  // Estrada cinza e rio azul com margem curva.
-  desenhar_quadrado(0, 375, 500, 125, "#858585");
-  ctx.beginPath();
-  ctx.moveTo(0, 313);
-  ctx.arc(0, 375, 62, -Math.PI / 2, 0);
-  ctx.lineTo(62, 438);
-  ctx.lineTo(188, 438);
-  ctx.arc(188, 500, 62, -Math.PI / 2, 0);
-  ctx.lineTo(0, 500);
-  ctx.closePath();
-  ctx.fillStyle = "#4387f5";
-  ctx.fill();
+// Arco superior direito externo
+desenhar_arco(ctx1, 150, 150, 80, 1.75 * Math.PI, 2 * Math.PI, "green", false);
 
-  // Troncos e copas das árvores.
-  desenhar_quadrado(62, 312, 25, 63, marrom);
-  desenhar_circulo(75, 287, 38, verde);
-  desenhar_quadrado(437, 375, 25, 63, marrom);
-  desenhar_circulo(450, 350, 38, verde);
+// Linhas diagonais
+desenhar_linha(ctx1, 50, 50, 150, 150, "blue", 1);
+desenhar_linha(ctx1, 250, 50, 150, 150, "red", 1);
 
-  // Casa, telhado, janelas e porta.
-  desenhar_quadrado(187, 250, 125, 125, marrom);
-  ctx.beginPath();
-  ctx.moveTo(187, 250);
-  ctx.lineTo(250, 187);
-  ctx.lineTo(312, 250);
-  ctx.closePath();
-  ctx.fillStyle = "#f1644f";
-  ctx.fill();
-  desenhar_quadrado(200, 275, 38, 38, "#37b8ed");
-  desenhar_quadrado(262, 275, 38, 38, "#37b8ed");
-  desenhar_quadrado(237, 313, 25, 62, "#684221");
-}
+// Círculo superior com contorno azul
+desenhar_arco(ctx1, 150, 115, 15, 0, 2 * Math.PI, "cyan", true);
+desenhar_arco(ctx1, 150, 115, 15, 0, 2 * Math.PI, "blue", false);
 
-desenhar_paisagem();
+// Linha horizontal verde
+desenhar_linha(ctx1, 0, 150, 300, 150, "green", 1);
+
+// Linha vertical cinza
+desenhar_linha(ctx1, 150, 190, 150, 260, "gray", 1);
+
+// Círculo amarelo esquerdo
+desenhar_arco(ctx1, 70, 220, 15, 0, 2 * Math.PI, "yellow", true);
+desenhar_arco(ctx1, 70, 220, 15, 0, 2 * Math.PI, "green", false);
+
+// Círculo amarelo direito
+desenhar_arco(ctx1, 220, 220, 15, 0, 2 * Math.PI, "yellow", true);
+desenhar_arco(ctx1, 220, 220, 15, 0, 2 * Math.PI, "green", false);
+
+// Arco inferior esquerdo: raio 80
+desenhar_arco(ctx1, 150, 300, 80, Math.PI, 1.5 * Math.PI, "green", false);
+
+// Arco inferior direito: raio 60
+desenhar_arco(ctx1, 150, 300, 60, 1.5 * Math.PI, 2 * Math.PI, "green", false);
+
+// Semicírculo inferior ciano
+desenhar_arco(ctx1, 150, 300, 40, Math.PI, 2 * Math.PI, "cyan", true);
+desenhar_arco(ctx1, 150, 300, 40, Math.PI, 2 * Math.PI, "green", false);
+
+
+// SEGUNDO DESENHO - CASA E PAISAGEM
+
+// Fundo verde claro
+desenhar_quadrado(ctx2, 0, 0, 300, 300, "#8FFDD4");
+
+// Sol amarelo
+desenhar_arco(ctx2, 225, 75, 37.5, 0, 2 * Math.PI, "#FCFF2D", true);
+
+// Chão cinza
+desenhar_quadrado(ctx2, 0, 225, 300, 75, "gray");
+
+// Casa - paredes
+desenhar_quadrado(ctx2, 112.5, 150, 75, 75, "#86471A");
+
+// Casa - telhado
+desenhar_triangulo(ctx2, 112.5, 150, 150, 112.5, 187.5, 150, "#F5694D");
+
+// Casa - janelas
+desenhar_quadrado(ctx2, 120, 165, 22, 22.5, "#47BDFD");
+desenhar_quadrado(ctx2, 157.5, 165, 22, 22.5, "#47BDFD");
+
+// Casa - porta
+desenhar_quadrado(ctx2, 142.5, 187.5, 15, 37.5, "#624423");
+
+// Árvore esquerda - tronco
+desenhar_quadrado(ctx2, 37.5, 180, 15, 45, "#86471A");
+
+// Árvore esquerda - copa
+desenhar_arco(ctx2, 45, 172.5, 22.5, 0, 2 * Math.PI, "#318A26", true);
+
+//Árvore direita - tronco
+desenhar_quadrado(ctx2, 262.5, 210, 15, 52.5, "#86471A");
+
+// Árvore direita - copa
+desenhar_arco(ctx2, 270, 210, 22.5, 0, 2 * Math.PI, "#318A26", true);
+
+// Área azul inferior esquerda - retângulos
+desenhar_quadrado(ctx2, 0, 225, 37.5, 75, "#458EFC");
+desenhar_quadrado(ctx2, 0, 262.5, 112.5, 37.5, "#458EFC");
+
+// Curva superior esquerda da área azul
+desenhar_arco(ctx2, 0, 225, 37.5, 0, 2 * Math.PI, "#458EFC", true);
+
+// Curva inferior direita da área azul
+desenhar_arco(ctx2, 112.5, 300, 37.5, Math.PI, 2 * Math.PI, "#458EFC", true);

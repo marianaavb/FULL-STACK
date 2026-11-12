@@ -1,25 +1,29 @@
-const numeroSecreto = Math.floor(Math.random() * 100);
+// Gera um único número de 0 a 99
+let numeroSecreto = Math.floor(Math.random() * 100);
 
-document.getElementById("guess-form").addEventListener("submit", function (evento) {
-    evento.preventDefault();
+// A função é executada quando o botão é clicado
+function ChecarPalpite() {
+    let palpite = document.getElementById("palpiteInput").value;
 
-    const entrada = document.getElementById("chute");
-    const palpite = Number(entrada.value);
-    const resposta = document.getElementById("resposta");
+    if (palpite === "" || !Number.isInteger(Number(palpite)) ||
+        Number(palpite) < 0 || Number(palpite) > 99) {
+        document.getElementById("resultado").innerHTML =
+            "Digite um número inteiro entre 0 e 99!";
 
-    if (!Number.isInteger(palpite) || palpite < 0 || palpite > 99) {
-        resposta.textContent = "Digite um número inteiro de 0 a 99.";
-        resposta.style.setProperty("background-color", "red");
-    } else if (palpite > numeroSecreto) {
-        resposta.textContent = "Muito alto! Tente um número menor.";
-        resposta.style.setProperty("background-color", "red");
-    } else if (palpite < numeroSecreto) {
-        resposta.textContent = "Muito baixo! Tente um número maior.";
-        resposta.style.setProperty("background-color", "red");
+    } else if (Number(palpite) > numeroSecreto) {
+        document.getElementById("resultado").innerHTML =
+            "O número secreto é MENOR que seu palpite!";
+
+    } else if (Number(palpite) < numeroSecreto) {
+        document.getElementById("resultado").innerHTML =
+            "O número secreto é MAIOR que seu palpite!";
+
     } else {
-        resposta.textContent = "Parabéns! Você acertou o número secreto!";
-        resposta.style.setProperty("background-color", "lightgreen");
-        entrada.disabled = true;
-        document.querySelector("button[type='submit']").disabled = true;
+        document.getElementById("resultado").innerHTML =
+            "Parabéns! Você acertou o número secreto!";
+
+        document.getElementById("resultado").style.setProperty(
+            "background-color", "green"
+        );
     }
-});
+}

@@ -1,10 +1,16 @@
-
 body {
   min-height: 100vh;
   margin: 0;
-  display: grid;
-  place-items: center;
   background: #90f29f;
+  text-align: center;
+  padding: 30px;
+}
+
+.quadrado {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 canvas {
