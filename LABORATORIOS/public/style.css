@@ -1,0 +1,143 @@
+body {
+    background-color: rgb(255, 220, 255);
+}
+
+.textoCabecalho {
+    text-align:justify;
+}
+
+
+h2 {
+    color: purple;
+}
+
+h1 {
+    text-align: center;
+    color: purple;
+}
+
+
+a:hover {
+    color: #610aac;
+    text-decoration: underline;
+}
+
+.Cabecalho {
+    max-width: 1000px;
+    margin: auto auto auto auto;
+    padding: 20px;
+    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 2px solid purple;
+}
+
+.topoBloco2 {
+    text-align: center;
+}
+
+.blocoCurso {
+    max-width: 500px;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ee9bff;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.blocoCurso h3 {
+    color: white;
+}
+
+.blocosAcademicos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+}
+
+.blocoInteresses {
+    max-width: 500px;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #ee9bff;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.blocoInteresses h2 {
+    color: white;
+}
+
+.blocoInteresses ul {
+    display: table;
+    margin: 0 auto;
+    text-align: left;
+}
+
+body a {
+    color: purple;
+    text-decoration: none;
+}
+
+.Redes {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 24px;
+    gap: 16px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 2px solid purple;
+    text-align: center;
+}
+
+.tituloRedes {
+    flex: 1 0 100%;
+}
+
+.rede-social {
+    flex: 1 1 180px;
+    padding: 16px;
+    background-color: #f8e8ff;
+    border-radius: 12px;
+}
+
+.rede-social img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-top: 8px;
+}
+
+.blocoMapa {
+    max-width: 500px;
+    margin: auto auto auto auto;
+    padding: 20px;
+    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    border: 2px solid purple;
+    
+}
+
+.blocoMapa h3 {
+    text-align: center;
+}
+
+.Mapa {
+    display: flex;
+    justify-content: center;
+}
+
+.saibaMais {
+    text-align: center;
+}

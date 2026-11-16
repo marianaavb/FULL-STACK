@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+     <title>Pagina inicial</title>
+        <meta charset="utf-8">
+<!--Para linkar o arquivo de html com o css (3 forma de utilizar o css)-->
+        <link href="style.css" rel="stylesheet">
+        
+    </head>
+    <body>
+    
+    <a href="index.html">Home |</a>
+    <a href="Projetos/projects.html">Projects</a><br>
+
+    <h1>Mariana Azevedo</h1>
+
+    <div class="Cabecalho">
+    <img src="Imagens/Mariana.jpg" alt="Mariana desenho" height="300px">
+
+    <div class = "textoCabecalho"><h2>Apresentação</h2>
+    <p>Me chamo Mariana, tenho 18 anos, e sou estudante interessada pela área de tecnologia e desenvolvimento. <br>Estou sempre buscando aprender coisas novas, desenvolver minhas habilidades e transformar ideias em projetos.</p>
+    
+    <h2>Sobre mim</h2>
+
+    <p>Sou uma pessoa dedicada e interessada em aprender e desenvolver novas habilidades. <br>Atualmente, estou estudando e aprimorando meus conhecimentos na área de tecnologia na faculdade <a href="https://portal.fei.edu.br/">FEI</a>. <br>Meu objetivo é continuar evoluindo profissionalmente e construir uma carreira na área de tecnologia.</p>
+    </div></div>
+
+    <div class="blocosAcademicos">
+        <div class="blocoCurso">
+            <h3>Cursando:</h3>
+            <a href="https://portal.fei.edu.br/ciencia-da-computacao">Ciência da Computação</a><br>
+            <img src="Imagens/cc.png" alt="Ciencia da computação" height="100px">
+        </div>
+
+        <div class="blocoInteresses">
+            <h2>Meus Interesses</h2>
+            <ul>
+                <li>Tecnologia</li>
+                <li>Design</li>
+                <li>Livros</li>
+                <li>Música</li>
+                <li>Cinema</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class= "topoBloco2">
+    <h2>Sobre a faculdade</h2>
+    
+    <img src="Imagens/Logo FEI Azul e Branco.png" alt="FEI" height="100px"></div>
+    <br>
+    <br>
+
+    <div class= "blocoMapa"><h3>Onde fica?</h3>
+    
+    <div class= "Mapa"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.6485563542624!2d-46.5793979!3d-23.724241199999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce4158ef9c7c05%3A0x776b798985695f52!2sFEI%20Campus%20S%C3%A3o%20Bernardo%20do%20Campo!5e0!3m2!1spt-BR!2sbr!4v1787790789855!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div></div>
+    <div class= "saibaMais"><h3>Saiba mais sobre a FEI!</h3>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/dZDnRtDu-Ss?si=mJiAPQ9C-iis8Plu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+   <iframe width="560" height="315" src="https://portal.fei.edu.br/" allowfullscreen></iframe></div>
+
+    <div class="Redes">
+        
+    <div class= "tituloRedes"><h2>Onde me encontrar?</h2></div>
+
+    <div class="rede-social">
+        <a href="https://github.com/marianaavb">GitHub</a><br>
+        <img src="Imagens/github(1).png" alt="Github" height="100px"><br>
+    </div>
+
+    <div class="rede-social">
+        <a href="contato.html">Email</a><br>
+        <img src="Imagens/email(1).png" alt="Email" height="100px">
+    </div>
+</div>
+
+    </body>
+
+
+</html>
+
+<!--SERVIDOR
+1.Conferir se o Node.js e o npm estão instalados.
+node -v
+npm -v
+
+2.Inicializar o projeto Node.js.
+npm init -y
+
+3.Instalar o Express.
+npm install express
+
+4.Criar o arquivo do servidor e configurar o Express.
+Server.js
+
+5.Servir os arquivos estáticos da pasta public.
+escrever no server.js:
+const express = require('express');
+const app = express();
+
+6.Iniciar o servidor e abrir o site no navegador.
+Escrever no server.js:
+app.use(express.static('public'));
+
+7.Criar uma página com formulários GET e POST.
+escrever no server.js:
+let server = http.createServer(app);
+server.listen(3000);
+**Não esquecer de importar o http no server.js:
+const http = require('http');
+-> Para testar se deu certo, escrever no navegador: http://localhost:3000 enquanto deixa reodando o "node server.js" no terminal.
+
+7.5. Criar formularios
+8.Criar a rota que recebe os dados enviados pelo formulário.
+9.Instalar e configurar o EJS.
+10.Criar a pasta views e um template para exibir os dados.
+11.Testar o fluxo completo no navegador.-->
