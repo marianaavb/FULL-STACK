@@ -103,16 +103,79 @@ const app = express();
 Escrever no server.js:
 app.use(express.static('public'));
 
-7.Criar uma página com formulários GET e POST.
+7.Importar servidor.
 escrever no server.js:
 let server = http.createServer(app);
 server.listen(3000);
 **Não esquecer de importar o http no server.js:
 const http = require('http');
--> Para testar se deu certo, escrever no navegador: http://localhost:3000 enquanto deixa reodando o "node server.js" no terminal.
+-> Para testar se deu certo, escrever no navegador: http://localhost:80 enquanto deixa rodando o "node server.js" no terminal.
+**para ajustar a pasta (cd ..)-voltar e (cd nome da pasta)-entrar na pasta.
 
-7.5. Criar formularios
+7.5. Criar uma página com formulários GET e POST.
+Criar o arquivo GET/POST (nesse caso o Login.html e Cadastro.html) dentro do puclic (Fazer o css dos dois)
+
+**Para fazer o servidor abrir direto na tela de projetos, escrever no server.js antes de (app.use(express.static('public'));):
+app.get('/', (req, res) => {
+    res.redirect('/Projetos/projects.html');
+});
+
+Em seguida colocar o caminho para acessar o Login.html e Cadastro.html direto pelo navegador, escrevendo no server.js:
+app.get('/cadastro', (req, res) => {
+    res.sendFile(__dirname + '/public/Cadastro.html');
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/public/Login.html');
+});
+
 8.Criar a rota que recebe os dados enviados pelo formulário.
-9.Instalar e configurar o EJS.
+Escrever antes de const app = express(); o codigo que permitirá a leitura dos dados enviados pelo formulário:
+app.use(express.urlencoded({ extended: false }));
+
+Criar um armazenamento temporário para os dados recebidos do formulário, escrevendo no server.js logo depois de const app = express();:
+const usuarios = [];
+
+Agora criar a rota que recebe os dados enviados pelo formulário, escrevendo no server.js:
+app.post('/cadastro', (req, res) => {
+    const novoUsuario = {
+        nome: req.body.nome,
+        usuario: req.body.usuario,
+        senha: req.body.senha
+    };
+
+    usuarios.push(novoUsuario);
+    res.redirect('/login');
+}); 
+
+9/10.Instalar e configurar o EJS.
+->DEPOIS DO GET NO CADASTRO, INSTALAR O EJS PELO TERMINAL (npm install ejs) 
+-> CRIARA PASTA VIEWS EM LABORATORIOS E UM ARQUIVO CHAMADO resposta.ejs
+
+Depois de criar o ejs, iremos cadastrá-lo no server.js, escrevendo o seguinte código depois de const app = express():
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
+Agora iremos configurar a rota que recebe os dados enviados pelo formulário de login, escrevendo no server.js:
+
+app.post('/login', (req, res) => {
+    const usuarioEncontrado = usuarios.find((usuario) =>
+        usuario.usuario === req.body.usuario &&
+        usuario.senha === req.body.senha
+    );
+
+    if (usuarioEncontrado) {
+        res.render('resposta', {
+            mensagem: `Login realizado com sucesso, ${usuarioEncontrado.nome}!`
+        });
+    } else {
+        res.render('resposta', {
+            mensagem: 'Usuário ou senha inválidos.'
+        });
+    }
+}); -> LOGO DEPOIS DO GET
+
 10.Criar a pasta views e um template para exibir os dados.
 11.Testar o fluxo completo no navegador.-->
+
+<!--PARA CONSULTAR O ENDEREÇO IP LOCAL DO COMPUTADOR: CMD -> digitar ipconfig -> procurar o IPv4.-->

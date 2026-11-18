@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link href="styleCadLog.css" rel="stylesheet">
+</head>
+<body>
+    <h1>Cadastro</h1>
+
+    <form action="/cadastra" method="post">
+        <p>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+        </p>
+
+        <p>
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" required>
+        </p>
+
+        <p>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+        </p>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <p><a href="/login">Voltar para o login</a></p>
+</body>
+</html>
