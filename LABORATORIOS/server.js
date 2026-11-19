@@ -1,3 +1,10 @@
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
+const uri = 'mongodb://localhost:27017';
+const client = new MongoClient(uri);
+const banco = client.db('blog');
+const posts = banco.collection('posts');
+
 const express = require('express');
 const app = express();
 app.set('view engine', 'ejs');
@@ -46,6 +53,23 @@ app.post('/login', (req, res) => {
             mensagem: 'Usuário ou senha inválidos.'
         });
     }
+});
+
+app.post('/cadastrar_post', (req, res) => {
+    const novoPost = {
+        titulo: req.body.titulo,
+        resumo: req.body.resumo,
+        conteudo: req.body.conteudo
+    };
+
+    posts.insertOne(novoPost, (erro) => {
+        if (erro) {
+            console.log(erro);
+            return res.status(500).send('Erro ao cadastrar o post.');
+        }
+
+        res.redirect('/blog');
+    });
 });
 
 app.use(express.static('public'));

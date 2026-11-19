@@ -175,7 +175,93 @@ app.post('/login', (req, res) => {
     }
 }); -> LOGO DEPOIS DO GET
 
-10.Criar a pasta views e um template para exibir os dados.
 11.Testar o fluxo completo no navegador.-->
 
 <!--PARA CONSULTAR O ENDEREÇO IP LOCAL DO COMPUTADOR: CMD -> digitar ipconfig -> procurar o IPv4.-->
+
+<!--///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Banco de dados - Create e Read
+
+Páginas e navegação--------------------------------------------------------------
+
+1. Criar views/blog.ejs, com um botão para abrir a página de cadastro de post.
+2. Criar public/cadastrar_post.html, com formulário para título, resumo e conteúdo.
+3. Aplicar CSS às páginas do blog: cor de fundo e centralização.
+
+MongoDB e servidor---------------------------------------------------------------
+
+4. Instalar o pacote MongoDB usado na aula: npm install mongodb@4.12 (no terminal aberto em LABORATORIOS nesse caso para o mongo online). 
+Escerver no terminal: Get-Service MongoDB para rodar no servidor local (devvera aparecer "running")
+Chamar o mongo no server.js, escrevendo no server.js antes de "const express = require('express');":
+    const mongodb = require('mongodb');
+    const MongoClient = mongodb.MongoClient;
+    const uri = 'mongodb://localhost:27017';
+    const client = new MongoClient(uri);
+logo em seguida, abaixo, escrever:
+    const banco = client.db('blog');
+    const posts = banco.collection('posts');
+
+Escrever no server.js, antes de app.use(express.static('public')) a rota que lê os posts:
+
+app.get('/blog', (req, res) => {
+    posts.find({}).toArray((erro, listaPosts) => {
+        if (erro) {
+            console.log(erro);
+            return res.status(500).send('Erro ao buscar posts.');
+        }
+
+        res.render('blog', { posts: listaPosts });
+    });
+});
+
+5. Preparar o banco e obter a string de conexão do MongoDB.
+6. Conectar o servidor ao MongoDB e selecionar o banco e a coleção de posts.
+7. Criar a rota POST /cadastrar_post para inserir um post no banco.
+8. Criar a rota GET /blog para buscar todos os posts e renderizar blog.ejs.
+criar a rota POST /cadastrar_post, que grava no MongoDB os campos enviados pelo formulário. No server.js, antes de app.use(express.static('public')), adicione:
+app.post('/cadastrar_post', (req, res) => {
+    const novoPost = {
+        titulo: req.body.titulo,
+        resumo: req.body.resumo,
+        conteudo: req.body.conteudo
+    };
+
+    posts.insertOne(novoPost, (erro) => {
+        if (erro) {
+            console.log(erro);
+            return res.status(500).send('Erro ao cadastrar o post.');
+        }
+
+        res.redirect('/blog');
+    });
+});
+
+em seguida adicionar no server.js antes de app.use(express.static('public')):
+
+app.get('/blog', (req, res) => {
+    posts.find({}).toArray((erro, listaPosts) => {
+        if (erro) {
+            console.log(erro);
+            return res.status(500).send('Erro ao buscar posts.');
+        }
+
+        res.render('blog', { posts: listaPosts });
+    });
+});
+
+Template e conferência-----------------------------------------------------------
+
+9. Em blog.ejs, usar EJS para percorrer os posts recebidos e mostrar título, resumo e conteúdo.
+10. Testar criando posts e conferir se aparecem no blog.
+
+No views/blog.ejs, dentro do <body> e depois do formulário do botão “Criar post”, adicione:
+<% for (let i = 0; i < posts.length; i++) { %>
+    <article>
+        <h2><%= posts[i].titulo %></h2>
+        <p><%= posts[i].resumo %></p>
+        <p><%= posts[i].conteudo %></p>
+    </article>
+<% } %>
+
+-->

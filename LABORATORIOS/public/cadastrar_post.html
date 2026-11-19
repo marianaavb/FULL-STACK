@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Criar post</title>
+    <link rel="stylesheet" href="/styleCadLog.css">
+</head>
+<body>
+    <h1>Criar post</h1>
+
+    <form action="/cadastrar_post" method="post">
+        <p>
+            <label for="titulo">Título:</label><br>
+            <input type="text" id="titulo" name="titulo" required>
+        </p>
+
+        <p>
+            <label for="resumo">Resumo:</label><br>
+            <textarea id="resumo" name="resumo" required></textarea>
+        </p>
+
+        <p>
+            <label for="conteudo">Conteúdo:</label><br>
+            <textarea id="conteudo" name="conteudo" rows="6" required></textarea>
+        </p>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <p><a href="/blog">Voltar ao blog</a></p>
+</body>
+</html>

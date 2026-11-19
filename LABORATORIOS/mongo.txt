@@ -1,0 +1,43 @@
+4. Instalar o pacote MongoDB
+No terminal aberto na pasta LABORATORIOS, execute:
+npm install mongodb@4.12
+Esse comando instala o pacote usado pelo servidor Node.js para conversar com o MongoDB. É preciso ter internet durante a instalação; o pacote serve tanto para conexão local quanto online.
+5. Verificar o MongoDB local
+No computador da faculdade, abra o PowerShell e execute:
+Get-Service MongoDB
+Se o serviço estiver rodando, deverá aparecer Running. Esse comando verifica o servidor MongoDB local.
+6. Preparar a conexão no server.js
+Para o cenário local e offline da prova, a URI é:
+const uri = 'mongodb://localhost:27017';
+No início do server.js, antes de const express = require('express');, escreva:
+const mongodb = require('mongodb');
+const MongoClient = mongodb.MongoClient;
+const uri = 'mongodb://localhost:27017';
+const client = new MongoClient(uri);
+7. Selecionar o banco e a coleção
+Logo abaixo do trecho anterior, escreva:
+const banco = client.db('blog');
+const posts = banco.collection('posts');
+Isso seleciona o banco blog e a coleção posts.
+8. Criar a rota POST para cadastrar posts
+Criar a rota POST /cadastrar_post para inserir um post no banco. O formulário enviará os campos título, resumo e conteúdo para essa rota.
+9. Criar a rota GET para ler os posts
+Criar a rota GET /blog para buscar todos os posts e renderizar blog.ejs. No server.js, ela deve ficar antes de app.use(express.static('public')):
+app.get('/blog', (req, res) => {
+    posts.find({}).toArray((erro, listaPosts) => {
+        if (erro) {
+            console.log(erro);
+            return res.status(500).send('Erro ao buscar posts.');
+        }
+
+        res.render('blog', { posts: listaPosts });
+    });
+});
+
+OBS.: 
+
+Se aparecer Running, ele já está rodando — não precisa iniciar nada.
+
+Se aparecer Stopped, abra o menu Iniciar, procure Serviços, localize MongoDB e escolha Iniciar. A documentação também descreve iniciar o serviço pelo comando net start MongoDB, que pode exigir permissão de administrador. MongoDB no Windows
+
+Se o serviço não for encontrado, peça ao professor ou ao suporte para verificar se o MongoDB Server está instalado e iniciado. O Compass sozinho não inicia o servidor do banco.
